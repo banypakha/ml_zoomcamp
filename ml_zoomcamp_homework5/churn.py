@@ -3,7 +3,6 @@ import pickle
 from flask import request
 from flask import jsonify
 
-
 with open('dv.bin', 'rb') as f_in:
     dv = pickle.load(f_in)
 
