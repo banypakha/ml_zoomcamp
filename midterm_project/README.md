@@ -36,5 +36,7 @@ I save the model, dv, and imputer so it can be deployed. The file can be accesse
 To put the model into web service, I created a python file https://github.com/banypakha/ml_zoomcamp/blob/main/midterm_project/predict.py to do the prediction based on the input(json). There's also a https://github.com/banypakha/ml_zoomcamp/blob/main/midterm_project/Pipfile and https://github.com/banypakha/ml_zoomcamp/blob/main/midterm_project/Pipfile.lock for the envoriment of python. Both were created with pipenv. Then there's also a DockerFile https://github.com/banypakha/ml_zoomcamp/blob/main/midterm_project/Dockerfile for containerization. 
 
 # Putting the model in cloud
-I also deploy the model in Heroku. I did the prediction via local docker and Heroku in this python file : https://github.com/banypakha/ml_zoomcamp/blob/main/midterm_project/Testing_the_model.ipynb. 
+I also deploy the model in Heroku. The screenshot can be found in https://github.com/banypakha/ml_zoomcamp/blob/main/midterm_project/prediction_via_heroku1.JPG. There is an error 'Method not allowed' because it supposed to be POST method not GET.
+
+I did the prediction via local docker and Heroku in this python file : https://github.com/banypakha/ml_zoomcamp/blob/main/midterm_project/Testing_the_model.ipynb. 
 
