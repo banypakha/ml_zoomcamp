@@ -24,7 +24,7 @@ Features :
 I use four algorithm for this problem which is Logistic Regression, Decision Tree, Random Forest, and XGBoost. I train the model on 60% of the data and use 20% for evaluation. Then I compare the model with one another and the best one was XGBoost. The notebook can be accessed in https://github.com/banypakha/ml_zoomcamp/blob/main/midterm_project/notebook.ipynb. 
 
 I train the final model on 80% data and use 20% for evaluation. The final evaluation was : 
->>roc_auc_score xgboost :  0.8022665791768347
->>f1_score xgboost :  0.6322521699406122
+>- roc_auc_score xgboost :  0.8022665791768347
+>- f1_score xgboost :  0.6322521699406122
 
 I save the model, dv, and imputer so it can be deployed. The file can be accessed in https://github.com/banypakha/ml_zoomcamp/blob/main/midterm_project/train.py. You can run the file and it will save the model, dv, and imputer.
