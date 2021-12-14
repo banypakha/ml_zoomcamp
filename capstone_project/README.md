@@ -52,4 +52,4 @@ Command for docker-compose :
   >- to launch the program : docker-compose up (make sure the command is executed in the same directory as the docker-compose.yaml file)
   >- to shut down the program : docker-compose down 
 
-I test the model by using test.py.
+I test the model by using running test.py.
