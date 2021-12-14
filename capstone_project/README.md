@@ -21,7 +21,7 @@ The saved model is loaded back to notebook and the final evaluation was :
 
 Then I saved the model in SavedModel format so that I can serve the model with TensorFlow Serving. 
 
-The code for training the final model can be reproduced in train.py. You can change the HDF5 file name to the file name that is saved in your computer after training the model. Then you can save the model as SavedModel.   
+The code for training the final model can be reproduced in train.py. You can change the HDF5 file name to the file name that is saved in your computer by callbacks when loading the model. Then the loaded model will be saved as SavedModel format.
 
 #  Serving the model with TensorFlow Serving, using flask as gateway, and deploying it locally via docker:
  Before we serve the model, we use : 
@@ -34,8 +34,8 @@ The code for training the final model can be reproduced in train.py. You can cha
   >- tensorflow serving image
 
   In tensorflow serving Dockerfile which is image-model.dockerfile, you can change the directory of the model.
-  
-  
+
+
   I use pipenv to create the Pipfile.lock and Pipfile file for the python environment in the gateway image.
   >- pipenv install grpcio==1.42.0 flask gunicorn keras-image-helper tensorflow-protobuf==2.7.0
   
@@ -45,6 +45,8 @@ The code for training the final model can be reproduced in train.py. You can cha
   >- gateway image : docker build -t {image_name} -f image-gateway.dockerfile .
 
 After we build those two images, we can use docker-compose to connect those images in one network. First we need to create a docker-compose.yaml file to configure what images are we going to connect. 
+
+In docker-compose.yaml, you can change the image name.
 
 Command for docker-compose : 
   >- to launch the program : docker-compose up (make sure the command is executed in the same directory as the docker-compose.yaml file)
