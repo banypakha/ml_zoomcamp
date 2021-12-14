@@ -20,16 +20,15 @@ The saved model is loaded back to notebook  and the final evaluation was :
 
 Then I saved the model in SavedModel format so that I can deploy the model with TensorFlow Serving.
 
-#  Putting the model into TensorFlow Serving, using flask as gateway and deploying it locally via docker:
- Before we put the model, we must use saved_model_cli show --dir {model_name} --all to get the signature, input and output to be used in gateway.py. 
+#  Serving the model with TensorFlow Serving, using flask as gateway, and deploying it locally via docker:
+ Before we serve the model, we must use saved_model_cli show --dir {model_name} --all to get the signature, input and output to be used in gateway.py. 
   
-  I use tensorflow serving for deploying the model and flask as the gateway between the user and the model. I build two images :
+  I use tensorflow serving for serving the model and flask as the gateway between the user and the model. I build two images :
   >- gateway image
   >- tensorflow serving image
   
   I use pipenv to create the Pipfile.lock and Pipfile file for the python environment in the gateway image.
-  
-  pipenv install grpcio==1.42.0 flask gunicorn keras-image-helper tensorflow-protobuf==2.7.0
+  >- pipenv install grpcio==1.42.0 flask gunicorn keras-image-helper tensorflow-protobuf==2.7.0
   
   The images was build using Dockerfile.
   Command to build the image : 
