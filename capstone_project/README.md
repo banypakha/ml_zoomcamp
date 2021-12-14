@@ -1,5 +1,5 @@
 # Background
-In this capstone project, I build an image classfier to detect whether a tire texture is normal or cracked(Oxidized). Cracked tires can poses a safety risk if not taken care properly. While this cracking can be a common sign of aging in rubber tires, it is also a sign of potential trouble that drivers need to take seriously. (https://www.tireoutlet.com/blog/3005/cracked-tires-when-theyre-unsafe/)
+In this capstone project, I build an image classifier to detect whether a tire texture is normal or cracked(Oxidized). Cracked tires can poses a safety risk if not taken care properly. While this cracking can be a common sign of aging in rubber tires, it is also a sign of potential trouble that drivers need to take seriously. (https://www.tireoutlet.com/blog/3005/cracked-tires-when-theyre-unsafe/)
 
 The image dataset was taken from this link : https://www.kaggle.com/jehanbhathena/tire-texture-image-recognition.
 
@@ -8,11 +8,53 @@ There are  a total of 1028 images that consists of  703 training images and 325 
 The size of the images ranges from 224x224 to 3024x3024. 
 
 # Model Selection and paramater Tuning
-I use two algorithm for this problem which is CNN and Transfer Learning using Xception. I train the neural network on training data and use the testing data for evaluation. The total number of training and testing data is the same as the source. I did some parameter tuning on Transfer Learning. The best model was transfer learning with the following configuration : 
+I use two algorithm for this problem which is CNN and Transfer Learning using Xception. I train the neural network on training data and use the testing data for evaluation. The total number of training and testing data is the same as the source. The image dimension input for this step is 150x150. I did some parameter tuning on Transfer Learning. The best model was transfer learning with the following configuration : 
 >- learning rate = 0.0001 
 >- size of first dense layer = 256 
 >- dropout = 0.2 
 
-The final evaluation was :
+Then I train the model using a bigger dimension image which is 224x224 (the smallest dimension in training and testing combined) and save the best model with callback in HDF5 format(.h5).
+The saved model is loaded back to notebook  and the final evaluation was :
 >- val_loss : 0.5474080443382263
 >- val_accuracy :  0.8246153593063354
+
+Then I saved the model in SavedModel format so that I can deploy the model with TensorFlow Serving.
+
+#  Putting the model into TensorFlow Serving, using flask as gateway and deploying it locally via docker:
+ Before we put the model we must use saved_model_cli show --dir tire-model-Xception --all to get the signature, input and output to be used in gateway.py. 
+ 
+signature_def['serving_default']:
+  The given SavedModel SignatureDef contains the following input(s):
+    inputs['input_30'] tensor_info:
+        dtype: DT_FLOAT
+        shape: (-1, 224, 224, 3)
+        name: serving_default_input_30:0
+  The given SavedModel SignatureDef contains the following output(s):
+    outputs['dense_29'] tensor_info:
+        dtype: DT_FLOAT
+        shape: (-1, 1)
+        name: StatefulPartitionedCall:0
+  Method name is: tensorflow/serving/predict
+  
+  I assign 'serving_default' for signature_name , input_30 for inputs and dense_20 for output in gateway.py 
+  
+  I use tensorflow serving for deploying the model and flask as the gateway between the user and the model. I build two images :
+  >- gateway image
+  >- tensorflow serving image
+  
+  I use pipenv to create the Pipfile.lock and Pipfile file for the python environment in the gateway image.
+  
+  pipenv install grpcio==1.42.0 flask gunicorn keras-image-helper tensorflow-protobuf==2.7.0
+  
+  The images was build using Dockerfile.
+  Command to build the image : 
+  >- tensorflow serving image : docker build -t tire-model-xception -f image-model.dockerfile .
+  >- gateway image : docker build -t tire-model-xception-gateway -f image-gateway.dockerfile .
+
+After we build those two images, we can use docker-compose to connect those images in one network. First we need to create a docker-compose.yaml file to configure what images are we going to connect. 
+
+Command for docker-compose : 
+  >- to launch the program : docker-compose up (make sure the command is executed in the same directory as the docker-compose.yaml file)
+  >- to shit down the program : docker-compose down 
+
+I test the model by using test.py.
