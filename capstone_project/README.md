@@ -23,6 +23,7 @@ Then I saved the model in SavedModel format so that I can serve the model with T
 #  Serving the model with TensorFlow Serving, using flask as gateway, and deploying it locally via docker:
  Before we serve the model, we use : 
  >- saved_model_cli show --dir {model_name} --all 
+ 
  to get the signature, input and output to be used in gateway.py. 
   
   I use tensorflow serving for serving the model and flask as the gateway between the user and the model. I build two images :
