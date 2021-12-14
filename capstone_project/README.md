@@ -1,5 +1,5 @@
 # Background
-In this capstone project, I build an image classifier to detect whether a tire texture is normal or cracked(Oxidized). Cracked tires can poses a safety risk if not taken care properly. While this cracking can be a common sign of aging in rubber tires, it is also a sign of potential trouble that drivers need to take seriously. (https://www.tireoutlet.com/blog/3005/cracked-tires-when-theyre-unsafe/)
+In this capstone project, I build an image classifier to detect whether a tire texture is normal or cracked(Oxidized).
 
 The image dataset was taken from this link : https://www.kaggle.com/jehanbhathena/tire-texture-image-recognition.
 
