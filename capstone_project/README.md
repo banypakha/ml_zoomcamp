@@ -3,7 +3,7 @@ In this capstone project, I build an image classifier to detect whether a tire t
 
 The image dataset was taken from this link : https://www.kaggle.com/jehanbhathena/tire-texture-image-recognition.
 
-There are  a total of 1028 images that consists of  703 training images and 325 testing images. From the 703 training images, 327 are cracked textured tires while 376 are normal textured tires. Meanwhile from the 325 testing images, 210 are cracked textured tires and 115 are normal textured tires. 
+There are  a total of 1028 images that consists of  703 training images and 325 testing images. From the 703 training images, 327 are cracked texture tires while 376 are normal texture tires. Meanwhile from the 325 testing images, 210 are cracked texture tires and 115 are normal texture tires. 
 
 The size of the images ranges from 224x224 to 3024x3024. 
 
