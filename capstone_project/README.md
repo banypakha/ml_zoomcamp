@@ -3,7 +3,7 @@ In this capstone project, I build an image classifier to detect whether a tire t
 
 The image dataset was taken from this link : https://www.kaggle.com/jehanbhathena/tire-texture-image-recognition.
 
-There are  a total of 1028 images that consists of  703 training images and 325 testing images. From the 703 training images, 327 are cracked tires while 376 are normal tires. Meanwhile from the 325 testing images, 210 are cracked tires and 115 are normal tires. 
+There are  a total of 1028 images that consists of  703 training images and 325 testing images. From the 703 training images, 327 are cracked textured tires while 376 are normal textured tires. Meanwhile from the 325 testing images, 210 are cracked textured tires and 115 are normal textured tires. 
 
 The size of the images ranges from 224x224 to 3024x3024. 
 
@@ -33,13 +33,13 @@ The code for training the final model can be reproduced in train.py. When loadin
   >- gateway image
   >- tensorflow serving image
 
-  In tensorflow serving Dockerfile which is image-model.dockerfile, you can change the directory of the model.
+
+  The images was build using Dockerfile. In tensorflow serving Dockerfile which is image-model.dockerfile, you can change the directory of the model.
 
 
   I use pipenv to create the Pipfile.lock and Pipfile file for the python environment in the gateway image.
   >- pipenv install grpcio==1.42.0 flask gunicorn keras-image-helper tensorflow-protobuf==2.7.0
   
-  The images was build using Dockerfile.
   Command to build the image : 
   >- tensorflow serving image : docker build -t {image_name} -f image-model.dockerfile .
   >- gateway image : docker build -t {image_name} -f image-gateway.dockerfile .
