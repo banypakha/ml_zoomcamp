@@ -20,6 +20,7 @@ The saved model is loaded back to notebook and the final evaluation was :
 >- val_accuracy :  0.8246153593063354
 
 Then I saved the model in SavedModel format so that I can serve the model with TensorFlow Serving. 
+
 The code for training the final model can be reproduced in train.py. You can change the HDF5 file name to the file name that is saved in your computer after training the model. Then you can save the model as SavedModel.   
 
 #  Serving the model with TensorFlow Serving, using flask as gateway, and deploying it locally via docker:
@@ -31,6 +32,9 @@ The code for training the final model can be reproduced in train.py. You can cha
   I use tensorflow serving for serving the model and flask as the gateway between the user and the model. I build two images :
   >- gateway image
   >- tensorflow serving image
+
+  In tensorflow serving Dockerfile which is image-model.dockerfile, you can change the directory of the model.
+  
   
   I use pipenv to create the Pipfile.lock and Pipfile file for the python environment in the gateway image.
   >- pipenv install grpcio==1.42.0 flask gunicorn keras-image-helper tensorflow-protobuf==2.7.0
