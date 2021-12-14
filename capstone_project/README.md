@@ -7,7 +7,7 @@ There are  a total of 1028 images that consists of  703 training images and 325 
 
 The size of the images ranges from 224x224 to 3024x3024. 
 
-# Model Selection and paramater Tuning
+# Model Selection and Paramater Tuning
 I use two algorithm for this problem which is CNN and Transfer Learning using Xception. I train the neural network on training data and use the testing data for evaluation. The total number of training and testing data is the same as the source. The image dimension input for this step is 150x150. I did some parameter tuning on Transfer Learning. The best model was transfer learning with the following configuration : 
 >- learning rate = 0.0001 
 >- size of first dense layer = 256 
@@ -21,7 +21,7 @@ The saved model is loaded back to notebook  and the final evaluation was :
 Then I saved the model in SavedModel format so that I can deploy the model with TensorFlow Serving.
 
 #  Putting the model into TensorFlow Serving, using flask as gateway and deploying it locally via docker:
- Before we put the model we must use saved_model_cli show --dir {model_name} --all to get the signature, input and output to be used in gateway.py. 
+ Before we put the model, we must use saved_model_cli show --dir {model_name} --all to get the signature, input and output to be used in gateway.py. 
   
   I use tensorflow serving for deploying the model and flask as the gateway between the user and the model. I build two images :
   >- gateway image
