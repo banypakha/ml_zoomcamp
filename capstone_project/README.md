@@ -21,22 +21,7 @@ The saved model is loaded back to notebook  and the final evaluation was :
 Then I saved the model in SavedModel format so that I can deploy the model with TensorFlow Serving.
 
 #  Putting the model into TensorFlow Serving, using flask as gateway and deploying it locally via docker:
- Before we put the model we must use saved_model_cli show --dir tire-model-Xception --all to get the signature, input and output to be used in gateway.py. 
- 
-signature_def['serving_default']:
-  The given SavedModel SignatureDef contains the following input(s):
-    inputs['input_30'] tensor_info:
-        dtype: DT_FLOAT
-        shape: (-1, 224, 224, 3)
-        name: serving_default_input_30:0
-  The given SavedModel SignatureDef contains the following output(s):
-    outputs['dense_29'] tensor_info:
-        dtype: DT_FLOAT
-        shape: (-1, 1)
-        name: StatefulPartitionedCall:0
-  Method name is: tensorflow/serving/predict
-  
-  I assign 'serving_default' for signature_name , input_30 for inputs and dense_20 for output in gateway.py 
+ Before we put the model we must use saved_model_cli show --dir {model_name} --all to get the signature, input and output to be used in gateway.py. 
   
   I use tensorflow serving for deploying the model and flask as the gateway between the user and the model. I build two images :
   >- gateway image
@@ -48,13 +33,13 @@ signature_def['serving_default']:
   
   The images was build using Dockerfile.
   Command to build the image : 
-  >- tensorflow serving image : docker build -t tire-model-xception -f image-model.dockerfile .
-  >- gateway image : docker build -t tire-model-xception-gateway -f image-gateway.dockerfile .
+  >- tensorflow serving image : docker build -t {image_name} -f image-model.dockerfile .
+  >- gateway image : docker build -t {image_name} -f image-gateway.dockerfile .
 
 After we build those two images, we can use docker-compose to connect those images in one network. First we need to create a docker-compose.yaml file to configure what images are we going to connect. 
 
 Command for docker-compose : 
   >- to launch the program : docker-compose up (make sure the command is executed in the same directory as the docker-compose.yaml file)
-  >- to shit down the program : docker-compose down 
+  >- to shut down the program : docker-compose down 
 
 I test the model by using test.py.
