@@ -13,12 +13,14 @@ I use two algorithm for this problem which is CNN and Transfer Learning using Xc
 >- size of first dense layer = 256 
 >- dropout = 0.2 
 
-Then I train the model using a input image 224x224 (the smallest dimension in training and testing combined) and save the best model with callback in HDF5 format(.h5).
+Then I train the model using a input image 224x224 (the smallest dimension in training and testing combined) and save the best model with callback in HDF5 format(.h5). 
+
 The saved model is loaded back to notebook and the final evaluation was :
 >- val_loss : 0.5474080443382263
 >- val_accuracy :  0.8246153593063354
 
-Then I saved the model in SavedModel format so that I can serve the model with TensorFlow Serving.(I couldn't upload the model to git since the size is too large)
+Then I saved the model in SavedModel format so that I can serve the model with TensorFlow Serving. 
+The code for training the final model can be reproduced in train.py. You can change the HDF5 file name to the file name that is saved in your computer after training the model. Then you can save the model as SavedModel.   
 
 #  Serving the model with TensorFlow Serving, using flask as gateway, and deploying it locally via docker:
  Before we serve the model, we use : 
