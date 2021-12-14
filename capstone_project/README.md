@@ -21,7 +21,7 @@ The saved model is loaded back to notebook and the final evaluation was :
 
 Then I saved the model in SavedModel format so that I can serve the model with TensorFlow Serving. 
 
-The code for training the final model can be reproduced in train.py. when loading the model, you can change the HDF5 file name to the file name that is saved in your computer by callbacks. Then the loaded model will be saved as SavedModel format.
+The code for training the final model can be reproduced in train.py. When loading the model, you can change the HDF5 file name to the file name that is saved in your computer by callbacks. Then the loaded model will be saved as SavedModel format.
 
 #  Serving the model with TensorFlow Serving, using flask as gateway, and deploying it locally via docker:
  Before we serve the model, we use : 
