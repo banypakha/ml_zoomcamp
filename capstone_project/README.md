@@ -18,7 +18,7 @@ The saved model is loaded back to notebook and the final evaluation was :
 >- val_loss : 0.5474080443382263
 >- val_accuracy :  0.8246153593063354
 
-Then I saved the model in SavedModel format so that I can serve the model with TensorFlow Serving.
+Then I saved the model in SavedModel format so that I can serve the model with TensorFlow Serving.(I couldn't upload the model to git since the size is too large)
 
 #  Serving the model with TensorFlow Serving, using flask as gateway, and deploying it locally via docker:
  Before we serve the model, we use : 
